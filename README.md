@@ -488,20 +488,20 @@ changing the current configuration does not remove values from Git history.
 1. Push the project to a Git provider supported by Render.
 2. In Render, create a **Blueprint** from that repository and select
    `render.yaml`.
-3. When prompted, provide the following environment values:
-   - `DB_URL`: JDBC URL for a PostgreSQL database, such as
-     `jdbc:postgresql://<host>:5432/<database>?sslmode=require`.
-   - `DB_USERNAME` and `DB_PASSWORD`: credentials for that database.
-   - `CORS_ALLOWED_ORIGINS`: the frontend's exact Render origin, for example
+3. Configure the API's `CORS_ALLOWED_ORIGINS` to the frontend's exact Render
+   origin, for example
      `https://job-portal-frontend.onrender.com`.
-   - `VITE_API_BASE_URL`: the API's public URL ending in `/api`, for example
-     `https://job-portal-api.onrender.com/api`.
+   Set the frontend's `VITE_API_BASE_URL` to the API's public URL ending in
+   `/api`, for example `https://job-portal-api.onrender.com/api`. The Blueprint
+   links the API's database environment variables directly to the Render
+   Postgres resource; credentials are generated and kept in Render.
 4. After deployment, open the frontend service URL. The API health check is
    available at `/api/actuator/health`.
 
-Render's free web-service filesystem is ephemeral. Uploaded resumes may be
-lost when the API service restarts or redeploys; use persistent/object storage
-before relying on resume uploads in production.
+Render's free Postgres databases expire after 30 days and are intended only for
+testing. Render's free web-service filesystem is also ephemeral. Use a paid
+database and persistent/object storage before relying on this setup for
+production or storing important data.
 
 ---
 
