@@ -12,18 +12,8 @@ services:
     dockerContext: .
     healthCheckPath: /api/actuator/health
     envVars:
-      - key: DB_HOST
-        fromDatabase:
-          name: job-portal-db
-          property: host
-      - key: DB_PORT
-        fromDatabase:
-          name: job-portal-db
-          property: port
-      - key: DB_NAME
-        fromDatabase:
-          name: job-portal-db
-          property: database
+      - key: DB_URL
+        value: jdbc:postgresql://dpg-dbkenku1egvs73cca05g-a:5432/job_portal_db_4lmx
       - key: DB_USERNAME
         fromDatabase:
           name: job-portal-db

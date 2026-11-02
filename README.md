@@ -493,8 +493,8 @@ changing the current configuration does not remove values from Git history.
      `https://job-portal-frontend.onrender.com`.
    Set the frontend's `VITE_API_BASE_URL` to the API's public URL ending in
    `/api`, for example `https://job-portal-api.onrender.com/api`. The Blueprint
-   links the API's database environment variables directly to the Render
-   Postgres resource; credentials are generated and kept in Render.
+   links the API's database credentials to the Render Postgres resource; the
+   generated username and password remain in Render.
 4. After deployment, open the frontend service URL. The API health check is
    available at `/api/actuator/health`.
 
