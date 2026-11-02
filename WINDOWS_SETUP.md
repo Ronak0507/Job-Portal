@@ -76,7 +76,7 @@ Open Command Prompt and set variables:
 ```bash
 setx DB_URL "jdbc:postgresql://localhost:5432/job_portal_db"
 setx DB_USERNAME "postgres"
-setx DB_PASSWORD "postgres"
+setx DB_PASSWORD "<YOUR_STRONG_DB_PASSWORD>"
 setx JWT_SECRET "MySecureSecretKeyHere123456789012345"
 setx JWT_EXPIRATION_MS "86400000"
 ```

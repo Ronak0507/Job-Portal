@@ -48,7 +48,7 @@ psql --version
    ```sql
    CREATE DATABASE job_portal_db;
    
-   CREATE USER job_portal_user WITH PASSWORD 'JobPortal@2024!';
+   CREATE USER job_portal_user WITH PASSWORD '<YOUR_STRONG_DB_PASSWORD>';
    
    GRANT ALL PRIVILEGES ON DATABASE job_portal_db TO job_portal_user;
    
@@ -90,7 +90,7 @@ Create a file named `.env` in the project root directory:
 # Database Configuration
 DB_URL=jdbc:postgresql://localhost:5432/job_portal_db
 DB_USERNAME=job_portal_user
-DB_PASSWORD=JobPortal@2024!
+DB_PASSWORD=<YOUR_STRONG_DB_PASSWORD>
 
 # JWT Configuration (Replace with your generated secret)
 JWT_SECRET=YOUR_GENERATED_SECRET_HERE
@@ -108,7 +108,7 @@ SPRING_PROFILES_ACTIVE=dev
 ```bash
 set DB_URL=jdbc:postgresql://localhost:5432/job_portal_db
 set DB_USERNAME=job_portal_user
-set DB_PASSWORD=JobPortal@2024!
+set DB_PASSWORD=<YOUR_STRONG_DB_PASSWORD>
 set JWT_SECRET=YOUR_GENERATED_SECRET_HERE
 set JWT_EXPIRATION_MS=86400000
 set UPLOAD_DIR=uploads/resumes
@@ -119,7 +119,7 @@ set UPLOAD_DIR=uploads/resumes
 ```bash
 export DB_URL=jdbc:postgresql://localhost:5432/job_portal_db
 export DB_USERNAME=job_portal_user
-export DB_PASSWORD=JobPortal@2024!
+export DB_PASSWORD=<YOUR_STRONG_DB_PASSWORD>
 export JWT_SECRET=YOUR_GENERATED_SECRET_HERE
 export JWT_EXPIRATION_MS=86400000
 export UPLOAD_DIR=uploads/resumes

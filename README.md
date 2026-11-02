@@ -132,7 +132,7 @@ job-portal-system/
 2. **Setup Database**
    ```sql
    CREATE DATABASE job_portal_db;
-   CREATE USER job_portal_user WITH PASSWORD 'JobPortal@2024!';
+   CREATE USER job_portal_user WITH PASSWORD '<YOUR_STRONG_DB_PASSWORD>';
    GRANT ALL PRIVILEGES ON DATABASE job_portal_db TO job_portal_user;
    ```
 
@@ -145,8 +145,8 @@ job-portal-system/
    ```bash
    export DB_URL=jdbc:postgresql://localhost:5432/job_portal_db
    export DB_USERNAME=job_portal_user
-   export DB_PASSWORD=JobPortal@2024!
-   export JWT_SECRET=<YOUR_GENERATED_SECRET>
+   export DB_PASSWORD="replace-with-a-strong-password"
+   export JWT_SECRET="paste-the-generated-secret-here"
    ```
 
 5. **Build and Run**
@@ -378,7 +378,7 @@ CREATE TABLE job_applications (
 # Database
 DB_URL=jdbc:postgresql://localhost:5432/job_portal_db
 DB_USERNAME=job_portal_user
-DB_PASSWORD=JobPortal@2024!
+DB_PASSWORD=<YOUR_STRONG_DB_PASSWORD>
 
 # JWT (REQUIRED - generate with: openssl rand -base64 32)
 JWT_SECRET=YOUR_STRONG_SECRET_HERE
@@ -476,6 +476,32 @@ docker run -d \
   -p 8080:8080 \
   job-portal:latest
 ```
+
+### Render Deployment
+
+The repository includes a Render Blueprint (`render.yaml`) for deploying the
+Spring Boot API and React frontend as separate services.
+
+Rotate any database credentials that were committed in earlier revisions;
+changing the current configuration does not remove values from Git history.
+
+1. Push the project to a Git provider supported by Render.
+2. In Render, create a **Blueprint** from that repository and select
+   `render.yaml`.
+3. When prompted, provide the following environment values:
+   - `DB_URL`: JDBC URL for a PostgreSQL database, such as
+     `jdbc:postgresql://<host>:5432/<database>?sslmode=require`.
+   - `DB_USERNAME` and `DB_PASSWORD`: credentials for that database.
+   - `CORS_ALLOWED_ORIGINS`: the frontend's exact Render origin, for example
+     `https://job-portal-frontend.onrender.com`.
+   - `VITE_API_BASE_URL`: the API's public URL ending in `/api`, for example
+     `https://job-portal-api.onrender.com/api`.
+4. After deployment, open the frontend service URL. The API health check is
+   available at `/api/actuator/health`.
+
+Render's free web-service filesystem is ephemeral. Uploaded resumes may be
+lost when the API service restarts or redeploys; use persistent/object storage
+before relying on resume uploads in production.
 
 ---
 
